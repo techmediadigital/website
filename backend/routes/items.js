@@ -47,7 +47,7 @@ let items = [
         description: 'Helps your business appear at the top when people search on Google.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
+        image: '/assets/services/seo.png'
     },
     {
         id: 13,
@@ -55,7 +55,7 @@ let items = [
         description: 'Engaging and advertising through platforms like Facebook and Instagram.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
+        image: '/assets/services/smm.png'
     },
     {
         id: 14,
@@ -63,15 +63,15 @@ let items = [
         description: 'Paying to appear prominently in search results using platforms like Google Ads.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
+        image: '/assets/services/ppc.png'
     },
     {
         id: 15,
-        title: 'Content Marketing',
-        description: 'Attracting customers by providing valuable information through blogs, videos, and other content formats.',
+        title: 'Content Marketing & Creation',
+        description: 'Attracting customers with high-quality blogs, videos, and graphics to drive engagement.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
+        image: '/assets/services/content-marketing.png'
     },
     {
         id: 16,
@@ -79,7 +79,7 @@ let items = [
         description: 'Sending special offers and updates to customers via email.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
+        image: '/assets/services/email-marketing.png'
     },
     {
         id: 24,
@@ -87,7 +87,7 @@ let items = [
         description: 'Marketing strategies augmented by data analytics for better targeting and ROI.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
+        image: '/assets/services/data-marketing.png'
     },
     {
         id: 25,
@@ -95,41 +95,27 @@ let items = [
         description: 'Long-term marketing strategies to achieve sustainable business growth.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
+        image: '/assets/services/strategy-marketing.png'
     },
-    {
-        id: 26,
-        title: 'Content Creation',
-        description: 'High-quality content production including blogs, videos, and graphics.',
-        type: 'product',
-        category: 'Digital Marketing',
-        image: '/assets/services/digital-marketing.png'
-    },
+
 
     // Software Development Category
     {
         id: 17,
-        title: 'Web and Mobile Applications',
-        description: 'Custom web and mobile app development tailored to your business needs.',
+        title: 'Custom Web & Mobile Solutions',
+        description: 'Bespoke software, web, and mobile app development tailored to your specific business challenges.',
         type: 'product',
         category: 'Software Development',
-        image: '/assets/services/software-development.png'
+        image: '/assets/services/software-custom.png'
     },
-    {
-        id: 20,
-        title: 'Custom Software',
-        description: 'Bespoke software solutions designed to address your specific business challenges.',
-        type: 'product',
-        category: 'Software Development',
-        image: '/assets/services/software-development.png'
-    },
+
     {
         id: 21,
         title: 'E-commerce Software',
         description: 'Comprehensive e-commerce platforms to manage online sales and inventory.',
         type: 'product',
         category: 'Software Development',
-        image: '/assets/services/software-development.png'
+        image: '/assets/services/software-ecommerce.png'
     },
     {
         id: 22,
@@ -137,7 +123,7 @@ let items = [
         description: 'Integrated software for managing hotels, resorts, and hospitality businesses.',
         type: 'product',
         category: 'Software Development',
-        image: '/assets/services/software-development.png'
+        image: '/assets/services/software-hospitality.png'
     },
 
     // AI & Data Solutions Category
@@ -147,7 +133,7 @@ let items = [
         description: 'Advanced AI-powered chatbots to automate customer support and engagement.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/ai-data.png'
+        image: '/assets/services/ai-chatbot.png'
     },
     {
         id: 27,
@@ -155,7 +141,7 @@ let items = [
         description: 'In-depth data analysis to uncover actionable insights and trends.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/ai-data.png'
+        image: '/assets/services/data-analytics.png'
     },
     {
         id: 28,
@@ -163,7 +149,7 @@ let items = [
         description: 'Artificial Intelligence solutions to automate processes and enhance decision-making.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/ai-data.png'
+        image: '/assets/services/ai-general.png'
     },
     {
         id: 29,
@@ -171,7 +157,7 @@ let items = [
         description: 'Image and video analysis technology for automated visual inspection and recognition.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/ai-data.png'
+        image: '/assets/services/computer-vision.png'
     },
 
     // Business Systems Category
