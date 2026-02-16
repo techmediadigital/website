@@ -8,140 +8,188 @@ let items = [
         id: 1,
         title: 'Enterprise Solutions',
         description: 'Custom-built specialized systems, CRM integrations (VaultRE), and scalable architectures for high-growth businesses.',
-        type: 'service'
+        type: 'service',
+        image: '/assets/services/business-systems.png'
     },
     {
         id: 2,
         title: 'Data Intelligence',
         description: 'Advanced analytics, neural network architectures, and AI-driven insights to power decision making.',
-        type: 'service'
+        type: 'service',
+        image: '/assets/services/ai-data.png'
     },
     {
         id: 3,
         title: 'Intelligent Automation',
         description: 'End-to-end workflow automation, cloud infrastructure, and security-first development.',
-        type: 'service'
+        type: 'service',
+        image: '/assets/services/software-development.png'
     },
     {
         id: 4,
         title: 'Amber Real Estate',
         description: 'Complete digital transformation for a leading real estate group. 40% increase in lead generation.',
-        type: 'project'
+        type: 'project',
+        image: '/assets/services/business-systems.png'
     },
     {
         id: 5,
         title: 'Global Logistics Core',
         description: 'AI-powered route optimization and fleet management dashboard.',
-        type: 'project'
+        type: 'project',
+        image: '/assets/services/ai-data.png'
     },
 
+    // Digital Marketing Category
     {
         id: 12,
         title: 'Search Engine Optimization (SEO)',
         description: 'Helps your business appear at the top when people search on Google.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
     },
     {
         id: 13,
         title: 'Social Media Marketing (SMM)',
         description: 'Engaging and advertising through platforms like Facebook and Instagram.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
     },
     {
         id: 14,
         title: 'Pay-Per-Click (PPC) Advertising',
         description: 'Paying to appear prominently in search results using platforms like Google Ads.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
     },
     {
         id: 15,
         title: 'Content Marketing',
         description: 'Attracting customers by providing valuable information through blogs, videos, and other content formats.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
     },
     {
         id: 16,
         title: 'Email Marketing',
         description: 'Sending special offers and updates to customers via email.',
-        type: 'product'
-    },
-    {
-        id: 17,
-        title: 'Web and Mobile Applications',
-        description: 'Custom web and mobile app development tailored to your business needs.',
-        type: 'product'
-    },
-    {
-        id: 18,
-        title: 'CRM',
-        description: 'Customer Relationship Management systems to manage interactions with current and potential customers.',
-        type: 'product'
-    },
-    {
-        id: 19,
-        title: 'ERP',
-        description: 'Enterprise Resource Planning software to manage day-to-day business activities.',
-        type: 'product'
-    },
-    {
-        id: 20,
-        title: 'Custom Software',
-        description: 'Bespoke software solutions designed to address your specific business challenges.',
-        type: 'product'
-    },
-    {
-        id: 21,
-        title: 'E-commerce Software',
-        description: 'Comprehensive e-commerce platforms to manage online sales and inventory.',
-        type: 'product'
-    },
-    {
-        id: 22,
-        title: 'Hospitality Management System',
-        description: 'Integrated software for managing hotels, resorts, and hospitality businesses.',
-        type: 'product'
-    },
-    {
-        id: 23,
-        title: 'AI Chatbot',
-        description: 'Advanced AI-powered chatbots to automate customer support and engagement.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
     },
     {
         id: 24,
         title: 'Data-Driven Digital Marketing',
         description: 'Marketing strategies augmented by data analytics for better targeting and ROI.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
     },
     {
         id: 25,
         title: 'Strategy Marketing',
         description: 'Long-term marketing strategies to achieve sustainable business growth.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
     },
     {
         id: 26,
         title: 'Content Creation',
         description: 'High-quality content production including blogs, videos, and graphics.',
-        type: 'product'
+        type: 'product',
+        category: 'Digital Marketing',
+        image: '/assets/services/digital-marketing.png'
+    },
+
+    // Software Development Category
+    {
+        id: 17,
+        title: 'Web and Mobile Applications',
+        description: 'Custom web and mobile app development tailored to your business needs.',
+        type: 'product',
+        category: 'Software Development',
+        image: '/assets/services/software-development.png'
+    },
+    {
+        id: 20,
+        title: 'Custom Software',
+        description: 'Bespoke software solutions designed to address your specific business challenges.',
+        type: 'product',
+        category: 'Software Development',
+        image: '/assets/services/software-development.png'
+    },
+    {
+        id: 21,
+        title: 'E-commerce Software',
+        description: 'Comprehensive e-commerce platforms to manage online sales and inventory.',
+        type: 'product',
+        category: 'Software Development',
+        image: '/assets/services/software-development.png'
+    },
+    {
+        id: 22,
+        title: 'Hospitality Management System',
+        description: 'Integrated software for managing hotels, resorts, and hospitality businesses.',
+        type: 'product',
+        category: 'Software Development',
+        image: '/assets/services/software-development.png'
+    },
+
+    // AI & Data Solutions Category
+    {
+        id: 23,
+        title: 'AI Chatbot',
+        description: 'Advanced AI-powered chatbots to automate customer support and engagement.',
+        type: 'product',
+        category: 'AI & Data Solutions',
+        image: '/assets/services/ai-data.png'
     },
     {
         id: 27,
         title: 'Data Analytics',
         description: 'In-depth data analysis to uncover actionable insights and trends.',
-        type: 'product'
+        type: 'product',
+        category: 'AI & Data Solutions',
+        image: '/assets/services/ai-data.png'
     },
     {
         id: 28,
         title: 'AI',
         description: 'Artificial Intelligence solutions to automate processes and enhance decision-making.',
-        type: 'product'
+        type: 'product',
+        category: 'AI & Data Solutions',
+        image: '/assets/services/ai-data.png'
     },
     {
         id: 29,
         title: 'Computer Vision',
         description: 'Image and video analysis technology for automated visual inspection and recognition.',
-        type: 'product'
+        type: 'product',
+        category: 'AI & Data Solutions',
+        image: '/assets/services/ai-data.png'
+    },
+
+    // Business Systems Category
+    {
+        id: 18,
+        title: 'CRM',
+        description: 'Customer Relationship Management systems to manage interactions with current and potential customers.',
+        type: 'product',
+        category: 'Business Systems',
+        image: '/assets/services/business-systems.png'
+    },
+    {
+        id: 19,
+        title: 'ERP',
+        description: 'Enterprise Resource Planning software to manage day-to-day business activities.',
+        type: 'product',
+        category: 'Business Systems',
+        image: '/assets/services/business-systems.png'
     }
 ];
 
@@ -156,7 +204,8 @@ router.post('/', (req, res) => {
         id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1,
         title: req.body.title,
         description: req.body.description,
-        type: req.body.type || 'service' // Default to service
+        type: req.body.type || 'service', // Default to service
+        category: req.body.category || null // Optional category field
     };
     items.push(newItem);
     res.status(201).json(newItem);

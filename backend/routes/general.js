@@ -13,10 +13,11 @@ let generalInfo = {
         ]
     },
     contact: {
-        addressLine1: "123 Innovation Drive",
-        addressLine2: "Tech District, CA 94025",
-        email: "hello@techmedia.digital",
-        phone: "+1 (555) 123-4567"
+        addressLine1: "India, Chennai",
+        addressLine2: "India, Kerala",
+        addressLine3: "UAE, Dubai",
+        email: "techmediadigital01@gmail.com",
+        phone: "+91 98472 72532"
     },
     home: {
         heroTitle: "Transforming Businesses Through Digital Engineering",

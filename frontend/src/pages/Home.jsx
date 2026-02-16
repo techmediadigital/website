@@ -60,7 +60,7 @@ const Home = () => {
             </header>
 
             {/* Services Section */}
-            <section id="services" className="section">
+            <section id="services" className="section" style={{ paddingTop: '0rem' }}>
                 <h2 className="section-title">Capabilities</h2>
                 <div className="grid">
                     {/* Always show at least these if items are empty */}
@@ -76,33 +76,192 @@ const Home = () => {
                             </div>
                         </>
                     ) : services.map(item => (
-                        <div key={item.id} className="card">
-                            <h3>{item.title}</h3>
-                            <p>{item.description}</p>
+                        <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                            {item.image && (
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
+                                    style={{
+                                        width: '100%',
+                                        height: '200px',
+                                        objectFit: 'cover',
+                                        borderTopLeftRadius: 'inherit',
+                                        borderTopRightRadius: 'inherit',
+                                        display: 'block'
+                                    }}
+                                />
+                            )}
+                            <div style={{ padding: '1.5rem' }}>
+                                <h3>{item.title}</h3>
+                                <p>{item.description}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
             </section>
 
-            {/* Products Section */}
-            <section id="products-list" className="section" style={{ background: 'rgba(255,255,255,0.02)' }}>
-                <h2 className="section-title">Digital Products</h2>
-                <div className="grid">
-                    {products.length === 0 && items.length === 0 ? (
-                        <div className="card">
-                            <h3>Loading Products...</h3>
+            {/* Products Section - Categorized */}
+            <section id="products-list" className="section" style={{ background: 'rgba(255,255,255,0.02)', paddingTop: '0rem' }}>
+                <h2 className="section-title">Our Services</h2>
+
+                {/* Digital Marketing */}
+                {products.filter(p => p.category === 'Digital Marketing').length > 0 && (
+                    <>
+                        <h3 style={{
+                            fontSize: '1.5rem',
+                            marginBottom: '1.5rem',
+                            marginTop: '2rem',
+                            color: 'var(--accent-color)',
+                            fontWeight: '600'
+                        }}>Digital Marketing</h3>
+                        <div className="grid" style={{ marginBottom: '3rem' }}>
+                            {products.filter(p => p.category === 'Digital Marketing').map(item => (
+                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                                    {item.image && (
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            style={{
+                                                width: '100%',
+                                                height: '200px',
+                                                objectFit: 'cover',
+                                                borderTopLeftRadius: 'inherit',
+                                                borderTopRightRadius: 'inherit',
+                                                display: 'block'
+                                            }}
+                                        />
+                                    )}
+                                    <div style={{ padding: '1.5rem' }}>
+                                        <h3>{item.title}</h3>
+                                        <p>{item.description}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ) : products.map(item => (
-                        <div key={item.id} className="card">
-                            <h3>{item.title}</h3>
-                            <p>{item.description}</p>
+                    </>
+                )}
+
+                {/* Software Development */}
+                {products.filter(p => p.category === 'Software Development').length > 0 && (
+                    <>
+                        <h3 style={{
+                            fontSize: '1.5rem',
+                            marginBottom: '1.5rem',
+                            marginTop: '2rem',
+                            color: 'var(--accent-color)',
+                            fontWeight: '600'
+                        }}>Software Development</h3>
+                        <div className="grid" style={{ marginBottom: '3rem' }}>
+                            {products.filter(p => p.category === 'Software Development').map(item => (
+                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                                    {item.image && (
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            style={{
+                                                width: '100%',
+                                                height: '200px',
+                                                objectFit: 'cover',
+                                                borderTopLeftRadius: 'inherit',
+                                                borderTopRightRadius: 'inherit',
+                                                display: 'block'
+                                            }}
+                                        />
+                                    )}
+                                    <div style={{ padding: '1.5rem' }}>
+                                        <h3>{item.title}</h3>
+                                        <p>{item.description}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </>
+                )}
+
+                {/* AI & Data Solutions */}
+                {products.filter(p => p.category === 'AI & Data Solutions').length > 0 && (
+                    <>
+                        <h3 style={{
+                            fontSize: '1.5rem',
+                            marginBottom: '1.5rem',
+                            marginTop: '2rem',
+                            color: 'var(--accent-color)',
+                            fontWeight: '600'
+                        }}>AI & Data Solutions</h3>
+                        <div className="grid" style={{ marginBottom: '3rem' }}>
+                            {products.filter(p => p.category === 'AI & Data Solutions').map(item => (
+                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                                    {item.image && (
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            style={{
+                                                width: '100%',
+                                                height: '200px',
+                                                objectFit: 'cover',
+                                                borderTopLeftRadius: 'inherit',
+                                                borderTopRightRadius: 'inherit',
+                                                display: 'block'
+                                            }}
+                                        />
+                                    )}
+                                    <div style={{ padding: '1.5rem' }}>
+                                        <h3>{item.title}</h3>
+                                        <p>{item.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+
+                {/* Business Systems */}
+                {products.filter(p => p.category === 'Business Systems').length > 0 && (
+                    <>
+                        <h3 style={{
+                            fontSize: '1.5rem',
+                            marginBottom: '1.5rem',
+                            marginTop: '2rem',
+                            color: 'var(--accent-color)',
+                            fontWeight: '600'
+                        }}>Business Systems</h3>
+                        <div className="grid" style={{ marginBottom: '3rem' }}>
+                            {products.filter(p => p.category === 'Business Systems').map(item => (
+                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                                    {item.image && (
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            style={{
+                                                width: '100%',
+                                                height: '200px',
+                                                objectFit: 'cover',
+                                                borderTopLeftRadius: 'inherit',
+                                                borderTopRightRadius: 'inherit',
+                                                display: 'block'
+                                            }}
+                                        />
+                                    )}
+                                    <div style={{ padding: '1.5rem' }}>
+                                        <h3>{item.title}</h3>
+                                        <p>{item.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+
+                {/* Fallback for loading state */}
+                {products.length === 0 && items.length === 0 && (
+                    <div className="card">
+                        <h3>Loading Services...</h3>
+                    </div>
+                )}
             </section>
 
             {/* Case Studies Section */}
-            <section id="projects" className="section" style={{ background: '#0a0a0a' }}>
+            <section id="projects" className="section" style={{ background: '#0a0a0a', paddingTop: '0rem' }}>
                 <h2 className="section-title">Selected Works</h2>
                 <div className="grid">
                     {projects.length === 0 && items.length === 0 ? (
@@ -129,8 +288,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Footer */}
-            {/* Footer */}
             <Footer />
         </div>
     );

@@ -5,7 +5,7 @@ const WhatsAppButton = () => {
     return (
         <a
             className="whatsapp-float"
-            href="https://wa.me/15551234567" // Placeholder number
+            href="https://wa.me/+919847272532" // Placeholder number
             target="_blank"
             rel="noopener noreferrer"
             style={{

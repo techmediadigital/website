@@ -180,7 +180,7 @@ a {
 
 .hero h1 {
   font-size: 4.5rem;
-  line-height: 1.1;
+  line-height: 1.2;
   max-width: 1000px;
   background: linear-gradient(180deg, #fff 0%, #94a3b8 100%);
   background-clip: text;
@@ -192,6 +192,7 @@ a {
   position: relative;
   /* Fix z-index */
   z-index: 2;
+  padding-bottom: 0.2rem;
 }
 
 .hero p {
@@ -232,7 +233,7 @@ a {
   padding: 6rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  width: 80%;
 }
 
 .section-title {
@@ -253,7 +254,7 @@ a {
 .card {
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
-  padding: 2.5rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   transition: all 0.3s ease;
   position: relative;
@@ -442,8 +443,24 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
+
+  /* Mobile Navbar Adjustments */
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-logo img {
+    height: 40px !important;
+  }
+
+  .nav-logo span {
+    font-size: 1rem !important;
+    margin-left: 0.5rem !important;
+  }
+
   .hamburger {
     display: block;
+    z-index: 101;
   }
 
   .hamburger.active .bar:nth-child(2) {
@@ -460,31 +477,59 @@ textarea:focus {
 
   .nav-group {
     position: fixed;
-    left: -100%;
-    top: 70px;
+    right: 0;
+    top: 60px;
     gap: 0;
     flex-direction: column;
-    background-color: var(--bg-color);
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-    border-bottom: 1px solid var(--glass-border);
-    padding-bottom: 2rem;
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(20px);
+    width: 250px;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
   }
 
   .nav-group.active {
-    left: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .nav-links {
     flex-direction: column;
-    margin: 2rem 0;
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .nav-actions {
     display: flex;
-    justify-content: center;
+    justify-content: stretch;
     width: 100%;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .nav-btn {
+    width: 100%;
+    text-align: center;
   }
 
   .hero h1 {

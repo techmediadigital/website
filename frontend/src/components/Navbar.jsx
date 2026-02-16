@@ -5,7 +5,27 @@ import logo from '../assets/logo.png';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const location = useLocation();
+    const navRef = React.useRef(null);
+
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    // Close menu when clicking outside
+    React.useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (navRef.current && !navRef.current.contains(event.target)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        if (isMenuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isMenuOpen]);
 
     // Close menu when route changes
     React.useEffect(() => {
@@ -15,11 +35,11 @@ const Navbar = () => {
     const isActive = (path) => location.pathname === path ? 'nav-link active' : 'nav-link';
 
     return (
-        <nav className="navbar">
+        <nav className="navbar" ref={navRef}>
             <div className="nav-logo">
                 <Link to="/" style={{ textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center' }}>
                     <img src={logo} alt="Techmedia Logo" style={{ height: '60px' }} />
-                    <span style={{ marginLeft: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>Techmediadigital</span>
+                    <span style={{ marginLeft: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>TechMediaDigital</span>
                 </Link>
             </div>
 

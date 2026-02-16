@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaLinkedin, FaTwitter, FaGithub, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaLinkedin, FaTwitter, FaGithub, FaFacebook, FaInstagram, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
     const [generalInfo, setGeneralInfo] = React.useState(null);
@@ -34,8 +35,11 @@ const Footer = () => {
                 {/* Brand Column */}
                 <div>
                     <div style={{ marginBottom: '1.5rem' }}>
-                        <Link to="/" style={{ textDecoration: 'none', color: '#fff', fontSize: '1.5rem', fontWeight: 'bold' }}>
-                            Techmediadigital<span style={{ color: 'var(--accent-color)' }}></span>
+                        <Link to="/" style={{ textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <img src={logo} alt="TechMediaDigital Logo" style={{ height: '50px' }} />
+                            <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                TechMediaDigital
+                            </span>
                         </Link>
                     </div>
                     <p style={{ color: '#888', lineHeight: '1.6', fontSize: '0.9rem' }}>
@@ -58,11 +62,33 @@ const Footer = () => {
                 <div>
                     <h4 style={{ color: '#fff', marginBottom: '1.5rem' }}>Contact</h4>
                     <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem', color: '#888', fontSize: '0.9rem' }}>
-                        <li>{contact?.addressLine1}</li>
-                        <li>{contact?.addressLine2}</li>
-                        <li>
-                            <a href={`mailto:${contact?.email}`} style={{ color: '#fff', textDecoration: 'none' }}>{contact?.email}</a>
-                        </li>
+                        {contact?.addressLine1 && (
+                            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <FaMapMarkerAlt style={{ color: 'var(--accent-color)' }} /> {contact.addressLine1}
+                            </li>
+                        )}
+                        {contact?.addressLine2 && (
+                            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <FaMapMarkerAlt style={{ color: 'var(--accent-color)' }} /> {contact.addressLine2}
+                            </li>
+                        )}
+                        {contact?.addressLine3 && (
+                            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <FaMapMarkerAlt style={{ color: 'var(--accent-color)' }} /> {contact.addressLine3}
+                            </li>
+                        )}
+                        {contact?.phone && (
+                            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <FaPhone style={{ color: 'var(--accent-color)', transform: 'scaleX(-1)' }} />
+                                <a href={`tel:${contact.phone}`} style={{ color: '#fff', textDecoration: 'none' }}>{contact.phone}</a>
+                            </li>
+                        )}
+                        {contact?.email && (
+                            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <FaEnvelope style={{ color: 'var(--accent-color)' }} />
+                                <a href={`mailto:${contact.email}`} style={{ color: '#fff', textDecoration: 'none' }}>{contact.email}</a>
+                            </li>
+                        )}
                     </ul>
                 </div>
 
@@ -111,7 +137,7 @@ const Footer = () => {
                 flexWrap: 'wrap',
                 gap: '1rem'
             }}>
-                <p>&copy; {new Date().getFullYear()} Techmediadigital. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} TechMediaDigital. All rights reserved.</p>
                 <div style={{ display: 'flex', gap: '2rem' }}>
                     <a href="#" style={{ color: '#444', textDecoration: 'none' }}>Privacy Policy</a>
                     <a href="#" style={{ color: '#444', textDecoration: 'none' }}>Terms of Service</a>
