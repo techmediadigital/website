@@ -288,6 +288,69 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* Why Choose Us Section */}
+            <section className="section" style={{ background: '#050505', paddingTop: '4rem', paddingBottom: '4rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                    <h2 className="section-title" style={{ marginBottom: '0.5rem' }}>Why Choose Us</h2>
+                    <p style={{ color: '#888', fontSize: '1.1rem' }}>We deliver excellence in every project we undertake</p>
+                </div>
+
+                <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                    {/* Card 1: Lightning Fast */}
+                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ color: '#00f2ea', marginBottom: '1.5rem' }}>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                        </div>
+                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>Lightning Fast</h3>
+                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                            Optimized for speed with cutting-edge tech stack ensuring blazing fast load times.
+                        </p>
+                    </div>
+
+                    {/* Card 2: Secure & Reliable */}
+                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ color: '#00f2ea', marginBottom: '1.5rem' }}>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>Secure & Reliable</h3>
+                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                            Enterprise-grade security with SSL, backups, and 99.9% uptime guarantee.
+                        </p>
+                    </div>
+
+                    {/* Card 3: On-Time Delivery */}
+                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ color: '#ffd700', marginBottom: '1.5rem' }}>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>On-Time Delivery</h3>
+                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                            We respect deadlines. Your project will be delivered on time, every time.
+                        </p>
+                    </div>
+
+                    {/* Card 4: 24/7 Support */}
+                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ color: '#ff4081', marginBottom: '1.5rem' }}>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </div>
+                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>24/7 Support</h3>
+                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                            Round-the-clock support to keep your website running smoothly at all times.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             <Footer />
         </div>
     );

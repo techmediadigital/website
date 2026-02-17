@@ -48,21 +48,26 @@ const Products = () => {
                             <p style={{ textAlign: 'center', color: '#666' }}>No products available yet.</p>
                         </div>
                     ) : products.map(product => (
-                        <div key={product.id} className="card" style={{ background: 'rgba(255,255,255,0.02)' }}>
-                            <div style={{
-                                textTransform: 'uppercase',
-                                fontSize: '0.7rem',
-                                letterSpacing: '0.1em',
-                                color: '#fff',
-                                background: 'var(--accent-color)',
-                                padding: '0.2rem 0.5rem',
-                                borderRadius: '4px',
-                                display: 'inline-block',
-                                marginBottom: '1rem'
-                            }}>New</div>
-                            <h3>{product.title}</h3>
-                            <p>{product.description}</p>
-                            <button className="btn" style={{ marginTop: '1.5rem', width: '100%', padding: '0.75rem' }}>View Details</button>
+                        <div key={product.id} className="card" style={{ padding: 0, overflow: 'hidden', background: 'rgba(255,255,255,0.02)', display: 'flex', flexDirection: 'column' }}>
+                            {product.image && (
+                                <img
+                                    src={product.image}
+                                    alt={product.title}
+                                    style={{
+                                        width: '100%',
+                                        height: '200px',
+                                        objectFit: 'cover',
+                                        borderTopLeftRadius: 'inherit',
+                                        borderTopRightRadius: 'inherit',
+                                        display: 'block'
+                                    }}
+                                />
+                            )}
+                            <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                                <h3>{product.title}</h3>
+                                <p style={{ marginBottom: '1.5rem' }}>{product.description}</p>
+                                <button className="btn" style={{ marginTop: 'auto', width: '100%', padding: '0.75rem' }}>View Details</button>
+                            </div>
                         </div>
                     ))}
                 </div>

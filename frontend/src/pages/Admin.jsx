@@ -465,17 +465,82 @@ const Admin = () => {
                     {/* Messages View */}
                     {activeTab === 'messages' && (
                         <div className="section-block">
-                            <div className="grid" style={{ gridTemplateColumns: '1fr' }}>
-                                {messages.length === 0 ? <p style={{ color: '#666' }}>No messages found.</p> : messages.map(msg => (
-                                    <div key={msg.id} className="card" style={{ marginBottom: '1rem' }}>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                                            <h3 style={{ fontSize: '1.2rem' }}>{msg.name}</h3>
-                                            <span style={{ fontSize: '0.9rem', color: '#666' }}>{new Date(msg.date).toLocaleString()}</span>
-                                        </div>
-                                        <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', marginBottom: '0.5rem' }}>{msg.email}</p>
-                                        <p style={{ color: '#ccc', whiteSpace: 'pre-wrap' }}>{msg.message}</p>
-                                    </div>
-                                ))}
+                            <h3 style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>Inbox</h3>
+                            <div style={{ overflowX: 'auto' }}>
+                                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+                                    <thead>
+                                        <tr style={{ borderBottom: '1px solid var(--glass-border)', color: 'var(--text-secondary)', textAlign: 'left' }}>
+                                            <th style={{ padding: '1rem', fontWeight: '500' }}>Date</th>
+                                            <th style={{ padding: '1rem', fontWeight: '500' }}>Name</th>
+                                            <th style={{ padding: '1rem', fontWeight: '500' }}>Email</th>
+                                            <th style={{ padding: '1rem', fontWeight: '500' }}>Phone</th>
+                                            <th style={{ padding: '1rem', fontWeight: '500' }}>Message</th>
+                                            <th style={{ padding: '1rem', fontWeight: '500', textAlign: 'right' }}>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {messages.length === 0 ? (
+                                            <tr>
+                                                <td colSpan="6" style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>No messages found.</td>
+                                            </tr>
+                                        ) : messages.map(msg => (
+                                            <tr key={msg.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s' }}
+                                                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                                                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                                            >
+                                                <td style={{ padding: '1rem', color: '#888', whiteSpace: 'nowrap', width: '150px' }}>
+                                                    {new Date(msg.date).toLocaleDateString()} <small>{new Date(msg.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</small>
+                                                </td>
+                                                <td style={{ padding: '1rem', fontWeight: '500' }}>{msg.name}</td>
+                                                <td style={{ padding: '1rem', color: 'var(--accent-color)' }}>{msg.email}</td>
+                                                <td style={{ padding: '1rem' }}>{msg.phone || '-'}</td>
+                                                <td style={{ padding: '1rem', color: '#ccc', maxWidth: '300px' }}>
+                                                    <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={msg.message}>
+                                                        {msg.message}
+                                                    </div>
+                                                </td>
+                                                <td style={{ padding: '1rem', textAlign: 'right', whiteSpace: 'nowrap' }}>
+                                                    {msg.phone && (
+                                                        <a
+                                                            href={`https://wa.me/${msg.phone.replace(/[^0-9]/g, '')}`}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            style={{
+                                                                marginRight: '0.5rem',
+                                                                color: '#25D366',
+                                                                textDecoration: 'none',
+                                                                border: '1px solid #25D366',
+                                                                padding: '0.4rem 0.8rem',
+                                                                borderRadius: '4px',
+                                                                fontSize: '0.8rem',
+                                                                display: 'inline-block'
+                                                            }}
+                                                        >
+                                                            WhatsApp
+                                                        </a>
+                                                    )}
+                                                    <button
+                                                        onClick={() => alert(`Full Message from ${msg.name}:\n\n${msg.message}\n\nEmail: ${msg.email}\nPhone: ${msg.phone || 'N/A'}`)}
+                                                        style={{
+                                                            background: 'none',
+                                                            border: '1px solid rgba(255,255,255,0.2)',
+                                                            color: '#fff',
+                                                            padding: '0.4rem 0.8rem',
+                                                            borderRadius: '4px',
+                                                            cursor: 'pointer',
+                                                            fontSize: '0.8rem',
+                                                            transition: 'all 0.2s'
+                                                        }}
+                                                        onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--accent-color)'; e.currentTarget.style.color = 'var(--accent-color)'; }}
+                                                        onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; e.currentTarget.style.color = '#fff'; }}
+                                                    >
+                                                        View
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     )}

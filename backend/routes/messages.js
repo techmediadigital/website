@@ -14,6 +14,7 @@ router.post('/', (req, res) => {
         id: messages.length + 1,
         name: req.body.name,
         email: req.body.email,
+        phone: req.body.phone,
         message: req.body.message,
         date: new Date()
     };

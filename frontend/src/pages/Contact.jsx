@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 
 const Contact = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
     const [contactInfo, setContactInfo] = useState(null);
 
     useEffect(() => {
@@ -32,8 +32,16 @@ const Contact = () => {
                 body: JSON.stringify(formData)
             });
             if (res.ok) {
+                // Open WhatsApp with pre-filled message
+                if (contactInfo && contactInfo.phone) {
+                    const cleanPhone = contactInfo.phone.replace(/[^0-9]/g, '');
+                    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
+                        `New Message from Website:\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
+                    )}`;
+                    window.open(whatsappUrl, '_blank');
+                }
                 alert('Thank you for your message. We will contact you shortly.');
-                setFormData({ name: '', email: '', message: '' });
+                setFormData({ name: '', email: '', phone: '', message: '' });
             }
         } catch (err) {
             console.error("Failed to send message", err);
@@ -113,6 +121,17 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                                     placeholder="john@example.com"
+                                    style={{ background: 'rgba(255,255,255,0.03)' }}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Phone Number</label>
+                                <input
+                                    type="tel"
+                                    required
+                                    value={formData.phone}
+                                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                                    placeholder="+1 (555) 123-4567"
                                     style={{ background: 'rgba(255,255,255,0.03)' }}
                                 />
                             </div>
