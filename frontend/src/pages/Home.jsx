@@ -26,6 +26,24 @@ const Home = () => {
 
     return (
         <div className="home-container">
+            {/* Carousel CSS */}
+            <style>{`
+                @keyframes marquee-ltr {
+                    0%   { transform: translateX(0); }
+                    100% { transform: translateX(-33.3333%); }
+                }
+                @keyframes marquee-rtl {
+                    0%   { transform: translateX(-33.3333%); }
+                    100% { transform: translateX(0); }
+                }
+                .dm-track  { display:flex; width:max-content; animation: marquee-ltr 28s linear infinite; }
+                .sd-track  { display:flex; width:max-content; animation: marquee-rtl 32s linear infinite; }
+                .ai-track  { display:flex; width:max-content; animation: marquee-ltr 24s linear infinite; }
+                .bs-track  { display:flex; width:max-content; animation: marquee-rtl 30s linear infinite; }
+                .dm-track:hover, .sd-track:hover, .ai-track:hover, .bs-track:hover {
+                    animation-play-state: paused;
+                }
+            `}</style>
             {/* Hero Section */}
             <header className="hero">
                 <SplashCursor />
@@ -101,156 +119,140 @@ const Home = () => {
             </section>
 
             {/* Products Section - Categorized */}
-            <section id="products-list" className="section" style={{ background: 'rgba(255,255,255,0.02)', paddingTop: '0rem' }}>
+            <section id="products-list" className="section section--full" style={{ background: 'transparent', paddingTop: '0rem' }}>
                 <h2 className="section-title">Our Services</h2>
 
                 {/* Digital Marketing */}
-                {products.filter(p => p.category === 'Digital Marketing').length > 0 && (
-                    <>
-                        <h3 style={{
-                            fontSize: '1.5rem',
-                            marginBottom: '1.5rem',
-                            marginTop: '2rem',
-                            color: 'var(--accent-color)',
-                            fontWeight: '600'
-                        }}>Digital Marketing</h3>
-                        <div className="grid" style={{ marginBottom: '3rem' }}>
-                            {products.filter(p => p.category === 'Digital Marketing').map(item => (
-                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                                    {item.image && (
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            style={{
-                                                width: '100%',
-                                                height: '200px',
-                                                objectFit: 'cover',
-                                                borderTopLeftRadius: 'inherit',
-                                                borderTopRightRadius: 'inherit',
-                                                display: 'block'
-                                            }}
-                                        />
-                                    )}
-                                    <div style={{ padding: '1.5rem' }}>
-                                        <h3>{item.title}</h3>
-                                        <p>{item.description}</p>
-                                    </div>
-                                </div>
-                            ))}
+                {products.filter(p => p.category === 'Digital Marketing').length > 0 && (() => {
+                    const dmItems = products.filter(p => p.category === 'Digital Marketing');
+                    const useCarousel = dmItems.length > 3;
+                    const loopItems = useCarousel ? [...dmItems, ...dmItems, ...dmItems] : dmItems;
+                    const renderCard = (item, idx) => (
+                        <div key={`${item.id}-${idx}`}
+                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                        >
+                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                            <div style={{ padding: '1.25rem' }}>
+                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Digital Marketing</div>
+                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                            </div>
                         </div>
-                    </>
-                )}
+                    );
+                    return (
+                        <>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Digital Marketing</h3>
+                            {useCarousel ? (
+                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                    <div className="dm-track">{loopItems.map(renderCard)}</div>
+                                </div>
+                            ) : (
+                                <div className="grid" style={{ marginBottom: '3rem' }}>{dmItems.map(renderCard)}</div>
+                            )}
+                        </>
+                    );
+                })()}
 
                 {/* Software Development */}
-                {products.filter(p => p.category === 'Software Development').length > 0 && (
-                    <>
-                        <h3 style={{
-                            fontSize: '1.5rem',
-                            marginBottom: '1.5rem',
-                            marginTop: '2rem',
-                            color: 'var(--accent-color)',
-                            fontWeight: '600'
-                        }}>Software Development</h3>
-                        <div className="grid" style={{ marginBottom: '3rem' }}>
-                            {products.filter(p => p.category === 'Software Development').map(item => (
-                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                                    {item.image && (
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            style={{
-                                                width: '100%',
-                                                height: '200px',
-                                                objectFit: 'cover',
-                                                borderTopLeftRadius: 'inherit',
-                                                borderTopRightRadius: 'inherit',
-                                                display: 'block'
-                                            }}
-                                        />
-                                    )}
-                                    <div style={{ padding: '1.5rem' }}>
-                                        <h3>{item.title}</h3>
-                                        <p>{item.description}</p>
-                                    </div>
-                                </div>
-                            ))}
+                {products.filter(p => p.category === 'Software Development').length > 0 && (() => {
+                    const sdItems = products.filter(p => p.category === 'Software Development');
+                    const useCarousel = sdItems.length > 3;
+                    const loopItems = useCarousel ? [...sdItems, ...sdItems, ...sdItems] : sdItems;
+                    const renderCard = (item, idx) => (
+                        <div key={`${item.id}-${idx}`}
+                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                        >
+                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                            <div style={{ padding: '1.25rem' }}>
+                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Software Dev</div>
+                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                            </div>
                         </div>
-                    </>
-                )}
+                    );
+                    return (
+                        <>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Software Development</h3>
+                            {useCarousel ? (
+                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                    <div className="sd-track">{loopItems.map(renderCard)}</div>
+                                </div>
+                            ) : (
+                                <div className="grid" style={{ marginBottom: '3rem' }}>{sdItems.map(renderCard)}</div>
+                            )}
+                        </>
+                    );
+                })()}
 
                 {/* AI & Data Solutions */}
-                {products.filter(p => p.category === 'AI & Data Solutions').length > 0 && (
-                    <>
-                        <h3 style={{
-                            fontSize: '1.5rem',
-                            marginBottom: '1.5rem',
-                            marginTop: '2rem',
-                            color: 'var(--accent-color)',
-                            fontWeight: '600'
-                        }}>AI & Data Solutions</h3>
-                        <div className="grid" style={{ marginBottom: '3rem' }}>
-                            {products.filter(p => p.category === 'AI & Data Solutions').map(item => (
-                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                                    {item.image && (
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            style={{
-                                                width: '100%',
-                                                height: '200px',
-                                                objectFit: 'cover',
-                                                borderTopLeftRadius: 'inherit',
-                                                borderTopRightRadius: 'inherit',
-                                                display: 'block'
-                                            }}
-                                        />
-                                    )}
-                                    <div style={{ padding: '1.5rem' }}>
-                                        <h3>{item.title}</h3>
-                                        <p>{item.description}</p>
-                                    </div>
-                                </div>
-                            ))}
+                {products.filter(p => p.category === 'AI & Data Solutions').length > 0 && (() => {
+                    const aiItems = products.filter(p => p.category === 'AI & Data Solutions');
+                    const useCarousel = aiItems.length > 3;
+                    const loopItems = useCarousel ? [...aiItems, ...aiItems, ...aiItems] : aiItems;
+                    const renderCard = (item, idx) => (
+                        <div key={`${item.id}-${idx}`}
+                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                        >
+                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                            <div style={{ padding: '1.25rem' }}>
+                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>AI &amp; Data</div>
+                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                            </div>
                         </div>
-                    </>
-                )}
+                    );
+                    return (
+                        <>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>AI &amp; Data Solutions</h3>
+                            {useCarousel ? (
+                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                    <div className="ai-track">{loopItems.map(renderCard)}</div>
+                                </div>
+                            ) : (
+                                <div className="grid" style={{ marginBottom: '3rem' }}>{aiItems.map(renderCard)}</div>
+                            )}
+                        </>
+                    );
+                })()}
 
                 {/* Business Systems */}
-                {products.filter(p => p.category === 'Business Systems').length > 0 && (
-                    <>
-                        <h3 style={{
-                            fontSize: '1.5rem',
-                            marginBottom: '1.5rem',
-                            marginTop: '2rem',
-                            color: 'var(--accent-color)',
-                            fontWeight: '600'
-                        }}>Business Systems</h3>
-                        <div className="grid" style={{ marginBottom: '3rem' }}>
-                            {products.filter(p => p.category === 'Business Systems').map(item => (
-                                <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                                    {item.image && (
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            style={{
-                                                width: '100%',
-                                                height: '200px',
-                                                objectFit: 'cover',
-                                                borderTopLeftRadius: 'inherit',
-                                                borderTopRightRadius: 'inherit',
-                                                display: 'block'
-                                            }}
-                                        />
-                                    )}
-                                    <div style={{ padding: '1.5rem' }}>
-                                        <h3>{item.title}</h3>
-                                        <p>{item.description}</p>
-                                    </div>
-                                </div>
-                            ))}
+                {products.filter(p => p.category === 'Business Systems').length > 0 && (() => {
+                    const bsItems = products.filter(p => p.category === 'Business Systems');
+                    const useCarousel = bsItems.length > 3;
+                    const loopItems = useCarousel ? [...bsItems, ...bsItems, ...bsItems] : bsItems;
+                    const renderCard = (item, idx) => (
+                        <div key={`${item.id}-${idx}`}
+                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                        >
+                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                            <div style={{ padding: '1.25rem' }}>
+                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Business Systems</div>
+                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                            </div>
                         </div>
-                    </>
-                )}
+                    );
+                    return (
+                        <>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Business Systems</h3>
+                            {useCarousel ? (
+                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                    <div className="bs-track">{loopItems.map(renderCard)}</div>
+                                </div>
+                            ) : (
+                                <div className="grid" style={{ marginBottom: '3rem' }}>{bsItems.map(renderCard)}</div>
+                            )}
+                        </>
+                    );
+                })()}
 
                 {/* Fallback for loading state */}
                 {products.length === 0 && items.length === 0 && (
@@ -261,7 +263,7 @@ const Home = () => {
             </section>
 
             {/* Case Studies Section */}
-            <section id="projects" className="section" style={{ background: '#0a0a0a', paddingTop: '0rem' }}>
+            <section id="projects" className="section section--full" style={{ background: '#0a0a0a', paddingTop: '0rem' }}>
                 <h2 className="section-title">Selected Works</h2>
                 <div className="grid">
                     {projects.length === 0 && items.length === 0 ? (

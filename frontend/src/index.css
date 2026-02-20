@@ -236,6 +236,22 @@ a {
   width: 80%;
 }
 
+/* Full-bleed variant — no max-width, no side padding, carousel rows go edge to edge */
+.section--full {
+  max-width: 100%;
+  width: 80%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Makes a carousel break out of any constrained parent to span full viewport width */
+.carousel-bleed {
+  width: 80vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .section-title {
   font-size: 2rem;
   margin-bottom: 3rem;
