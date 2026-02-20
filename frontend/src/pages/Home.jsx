@@ -77,285 +77,373 @@ const Home = () => {
                 </div>
             </header>
 
-            {/* Services Section */}
-            <section id="services" className="section" style={{ paddingTop: '0rem' }}>
-                <h2 className="section-title">Capabilities</h2>
-                <div className="grid">
-                    {/* Always show at least these if items are empty */}
-                    {services.length === 0 && items.length === 0 ? (
-                        <>
-                            <div className="card">
-                                <h3>Enterprise Solutions</h3>
-                                <p>Scalable architectures for high-growth businesses. (Loading more...)</p>
+            {/* ── Ambient Glow Background for all sections below hero ── */}
+            <style>{`
+                @keyframes orb-float-1 {
+                    0%, 100% { transform: translate(0, 0) scale(1); }
+                    33%       { transform: translate(60px, -40px) scale(1.15); }
+                    66%       { transform: translate(-30px, 30px) scale(0.9); }
+                }
+                @keyframes orb-float-2 {
+                    0%, 100% { transform: translate(0, 0) scale(1); }
+                    40%       { transform: translate(-70px, 35px) scale(1.2); }
+                    70%       { transform: translate(40px, -20px) scale(0.85); }
+                }
+                @keyframes orb-float-3 {
+                    0%, 100% { transform: translate(0, 0) scale(1); }
+                    50%       { transform: translate(30px, 60px) scale(1.1); }
+                }
+                @keyframes shimmer-scan {
+                    0%   { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
+                }
+            `}</style>
+            <div style={{ position: 'relative', overflow: 'hidden' }}>
+
+                {/* Services Section */}
+                <section id="services" className="section" style={{ paddingTop: '0rem' }}>
+
+                    <h2 className="section-title">Capabilities</h2>
+                    <div className="grid">
+                        {/* Always show at least these if items are empty */}
+                        {services.length === 0 && items.length === 0 ? (
+                            <>
+                                <div className="card">
+                                    <h3>Enterprise Solutions</h3>
+                                    <p>Scalable architectures for high-growth businesses. (Loading more...)</p>
+                                </div>
+                                <div className="card">
+                                    <h3>Data Intelligence</h3>
+                                    <p>AI-driven insights and analytics. (Loading more...)</p>
+                                </div>
+                            </>
+                        ) : services.map(item => (
+                            <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                                {item.image && (
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        style={{
+                                            width: '100%',
+                                            height: '200px',
+                                            objectFit: 'cover',
+                                            borderTopLeftRadius: 'inherit',
+                                            borderTopRightRadius: 'inherit',
+                                            display: 'block'
+                                        }}
+                                    />
+                                )}
+                                <div style={{ padding: '1.5rem' }}>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.description}</p>
+                                </div>
                             </div>
-                            <div className="card">
-                                <h3>Data Intelligence</h3>
-                                <p>AI-driven insights and analytics. (Loading more...)</p>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Products Section - Categorized */}
+                <section id="products-list" className="section section--full" style={{ background: 'transparent', paddingTop: '0rem' }}>
+                    <h2 className="section-title">Our Services</h2>
+
+                    {/* Digital Marketing */}
+                    {products.filter(p => p.category === 'Digital Marketing').length > 0 && (() => {
+                        const dmItems = products.filter(p => p.category === 'Digital Marketing');
+                        const useCarousel = dmItems.length > 3;
+                        const loopItems = useCarousel ? [...dmItems, ...dmItems, ...dmItems] : dmItems;
+                        const renderCard = (item, idx) => (
+                            <div key={`${item.id}-${idx}`}
+                                style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                            >
+                                {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                                <div style={{ padding: '1.25rem' }}>
+                                    <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Digital Marketing</div>
+                                    <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                    <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                                </div>
                             </div>
-                        </>
-                    ) : services.map(item => (
-                        <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                            {item.image && (
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    style={{
-                                        width: '100%',
-                                        height: '200px',
-                                        objectFit: 'cover',
-                                        borderTopLeftRadius: 'inherit',
-                                        borderTopRightRadius: 'inherit',
-                                        display: 'block'
-                                    }}
-                                />
-                            )}
-                            <div style={{ padding: '1.5rem' }}>
+                        );
+                        return (
+                            <>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Digital Marketing</h3>
+                                {useCarousel ? (
+                                    <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                        <div className="dm-track">{loopItems.map(renderCard)}</div>
+                                    </div>
+                                ) : (
+                                    <div className="grid" style={{ marginBottom: '3rem' }}>{dmItems.map(renderCard)}</div>
+                                )}
+                            </>
+                        );
+                    })()}
+
+                    {/* Software Development */}
+                    {products.filter(p => p.category === 'Software Development').length > 0 && (() => {
+                        const sdItems = products.filter(p => p.category === 'Software Development');
+                        const useCarousel = sdItems.length > 3;
+                        const loopItems = useCarousel ? [...sdItems, ...sdItems, ...sdItems] : sdItems;
+                        const renderCard = (item, idx) => (
+                            <div key={`${item.id}-${idx}`}
+                                style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                            >
+                                {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                                <div style={{ padding: '1.25rem' }}>
+                                    <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Software Dev</div>
+                                    <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                    <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                                </div>
+                            </div>
+                        );
+                        return (
+                            <>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Software Development</h3>
+                                {useCarousel ? (
+                                    <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                        <div className="sd-track">{loopItems.map(renderCard)}</div>
+                                    </div>
+                                ) : (
+                                    <div className="grid" style={{ marginBottom: '3rem' }}>{sdItems.map(renderCard)}</div>
+                                )}
+                            </>
+                        );
+                    })()}
+
+                    {/* AI & Data Solutions */}
+                    {products.filter(p => p.category === 'AI & Data Solutions').length > 0 && (() => {
+                        const aiItems = products.filter(p => p.category === 'AI & Data Solutions');
+                        const useCarousel = aiItems.length > 3;
+                        const loopItems = useCarousel ? [...aiItems, ...aiItems, ...aiItems] : aiItems;
+                        const renderCard = (item, idx) => (
+                            <div key={`${item.id}-${idx}`}
+                                style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                            >
+                                {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                                <div style={{ padding: '1.25rem' }}>
+                                    <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>AI &amp; Data</div>
+                                    <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                    <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                                </div>
+                            </div>
+                        );
+                        return (
+                            <>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>AI &amp; Data Solutions</h3>
+                                {useCarousel ? (
+                                    <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                        <div className="ai-track">{loopItems.map(renderCard)}</div>
+                                    </div>
+                                ) : (
+                                    <div className="grid" style={{ marginBottom: '3rem' }}>{aiItems.map(renderCard)}</div>
+                                )}
+                            </>
+                        );
+                    })()}
+
+                    {/* Business Systems */}
+                    {products.filter(p => p.category === 'Business Systems').length > 0 && (() => {
+                        const bsItems = products.filter(p => p.category === 'Business Systems');
+                        const useCarousel = bsItems.length > 3;
+                        const loopItems = useCarousel ? [...bsItems, ...bsItems, ...bsItems] : bsItems;
+                        const renderCard = (item, idx) => (
+                            <div key={`${item.id}-${idx}`}
+                                style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
+                                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                            >
+                                {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
+                                <div style={{ padding: '1.25rem' }}>
+                                    <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Business Systems</div>
+                                    <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
+                                    <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                                </div>
+                            </div>
+                        );
+                        return (
+                            <>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Business Systems</h3>
+                                {useCarousel ? (
+                                    <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+                                        <div className="bs-track">{loopItems.map(renderCard)}</div>
+                                    </div>
+                                ) : (
+                                    <div className="grid" style={{ marginBottom: '3rem' }}>{bsItems.map(renderCard)}</div>
+                                )}
+                            </>
+                        );
+                    })()}
+
+                    {/* Fallback for loading state */}
+                    {products.length === 0 && items.length === 0 && (
+                        <div className="card">
+                            <h3>Loading Services...</h3>
+                        </div>
+                    )}
+                </section>
+
+                {/* Case Studies Section */}
+                <section id="projects" className="section section--full" style={{ background: '#0a0a0a', paddingTop: '0rem' }}>
+                    <h2 className="section-title">Selected Works</h2>
+                    <div className="grid">
+                        {projects.length === 0 && items.length === 0 ? (
+                            <div className="card" style={{ background: 'linear-gradient(45deg, #111, #000)' }}>
+                                <div style={{ textTransform: 'uppercase', color: 'var(--accent-color)', fontSize: '0.8rem', marginBottom: '1rem' }}>Case Study</div>
+                                <h3>Amber Real Estate</h3>
+                                <p>Digital Transformation Reference. (Loading...)</p>
+                            </div>
+                        ) : projects.map(item => (
+                            <div key={item.id} className="card" style={{ background: 'linear-gradient(45deg, #111, #000)' }}>
+                                <div style={{
+                                    textTransform: 'uppercase',
+                                    fontSize: '0.8rem',
+                                    color: 'var(--accent-color)',
+                                    marginBottom: '1rem'
+                                }}>Case Study</div>
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Products Section - Categorized */}
-            <section id="products-list" className="section section--full" style={{ background: 'transparent', paddingTop: '0rem' }}>
-                <h2 className="section-title">Our Services</h2>
-
-                {/* Digital Marketing */}
-                {products.filter(p => p.category === 'Digital Marketing').length > 0 && (() => {
-                    const dmItems = products.filter(p => p.category === 'Digital Marketing');
-                    const useCarousel = dmItems.length > 3;
-                    const loopItems = useCarousel ? [...dmItems, ...dmItems, ...dmItems] : dmItems;
-                    const renderCard = (item, idx) => (
-                        <div key={`${item.id}-${idx}`}
-                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-                        >
-                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
-                            <div style={{ padding: '1.25rem' }}>
-                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Digital Marketing</div>
-                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
-                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
-                            </div>
-                        </div>
-                    );
-                    return (
-                        <>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Digital Marketing</h3>
-                            {useCarousel ? (
-                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
-                                    <div className="dm-track">{loopItems.map(renderCard)}</div>
+                                <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fff', fontSize: '0.9rem', cursor: 'pointer' }}>
+                                    Read Case Study &rarr;
                                 </div>
-                            ) : (
-                                <div className="grid" style={{ marginBottom: '3rem' }}>{dmItems.map(renderCard)}</div>
-                            )}
-                        </>
-                    );
-                })()}
-
-                {/* Software Development */}
-                {products.filter(p => p.category === 'Software Development').length > 0 && (() => {
-                    const sdItems = products.filter(p => p.category === 'Software Development');
-                    const useCarousel = sdItems.length > 3;
-                    const loopItems = useCarousel ? [...sdItems, ...sdItems, ...sdItems] : sdItems;
-                    const renderCard = (item, idx) => (
-                        <div key={`${item.id}-${idx}`}
-                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-                        >
-                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
-                            <div style={{ padding: '1.25rem' }}>
-                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Software Dev</div>
-                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
-                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
                             </div>
-                        </div>
-                    );
-                    return (
-                        <>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Software Development</h3>
-                            {useCarousel ? (
-                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
-                                    <div className="sd-track">{loopItems.map(renderCard)}</div>
-                                </div>
-                            ) : (
-                                <div className="grid" style={{ marginBottom: '3rem' }}>{sdItems.map(renderCard)}</div>
-                            )}
-                        </>
-                    );
-                })()}
+                        ))}
+                    </div>
+                </section>
 
-                {/* AI & Data Solutions */}
-                {products.filter(p => p.category === 'AI & Data Solutions').length > 0 && (() => {
-                    const aiItems = products.filter(p => p.category === 'AI & Data Solutions');
-                    const useCarousel = aiItems.length > 3;
-                    const loopItems = useCarousel ? [...aiItems, ...aiItems, ...aiItems] : aiItems;
-                    const renderCard = (item, idx) => (
-                        <div key={`${item.id}-${idx}`}
-                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-                        >
-                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
-                            <div style={{ padding: '1.25rem' }}>
-                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>AI &amp; Data</div>
-                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
-                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                {/* Why Choose Us Section */}
+                <section className="section" style={{ background: '#050505', paddingTop: '4rem', paddingBottom: '4rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                        <h2 className="section-title" style={{ marginBottom: '0.5rem' }}>Why Choose Us</h2>
+                        <p style={{ color: '#888', fontSize: '1.1rem' }}>We deliver excellence in every project we undertake</p>
+                    </div>
+
+                    <div className="grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+                        {/* Card 1: Lightning Fast */}
+                        <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <div style={{ color: '#00f2ea', marginBottom: '1.5rem' }}>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
                             </div>
+                            <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>Lightning Fast</h3>
+                            <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                Optimized for speed with cutting-edge tech stack ensuring blazing fast load times.
+                            </p>
                         </div>
-                    );
-                    return (
-                        <>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>AI &amp; Data Solutions</h3>
-                            {useCarousel ? (
-                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
-                                    <div className="ai-track">{loopItems.map(renderCard)}</div>
-                                </div>
-                            ) : (
-                                <div className="grid" style={{ marginBottom: '3rem' }}>{aiItems.map(renderCard)}</div>
-                            )}
-                        </>
-                    );
-                })()}
 
-                {/* Business Systems */}
-                {products.filter(p => p.category === 'Business Systems').length > 0 && (() => {
-                    const bsItems = products.filter(p => p.category === 'Business Systems');
-                    const useCarousel = bsItems.length > 3;
-                    const loopItems = useCarousel ? [...bsItems, ...bsItems, ...bsItems] : bsItems;
-                    const renderCard = (item, idx) => (
-                        <div key={`${item.id}-${idx}`}
-                            style={{ flex: useCarousel ? '0 0 300px' : undefined, width: useCarousel ? '300px' : undefined, marginRight: useCarousel ? '1.25rem' : undefined, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem', overflow: 'hidden', transition: 'border-color 0.25s, transform 0.25s', cursor: 'default' }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(42,182,251,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-                        >
-                            {item.image && <img src={item.image} alt={item.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />}
-                            <div style={{ padding: '1.25rem' }}>
-                                <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-color)', marginBottom: '0.5rem', padding: '2px 8px', background: 'rgba(42,182,251,0.1)', borderRadius: '4px' }}>Business Systems</div>
-                                <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', fontWeight: '600', lineHeight: '1.4' }}>{item.title}</h3>
-                                <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>{item.description}</p>
+                        {/* Card 2: Secure & Reliable */}
+                        <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <div style={{ color: '#00f2ea', marginBottom: '1.5rem' }}>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
                             </div>
+                            <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>Secure & Reliable</h3>
+                            <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                Enterprise-grade security with SSL, backups, and 99.9% uptime guarantee.
+                            </p>
                         </div>
-                    );
-                    return (
-                        <>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-color)', fontWeight: '600' }}>Business Systems</h3>
-                            {useCarousel ? (
-                                <div className="carousel-bleed" style={{ overflow: 'hidden', marginBottom: '3rem', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
-                                    <div className="bs-track">{loopItems.map(renderCard)}</div>
-                                </div>
-                            ) : (
-                                <div className="grid" style={{ marginBottom: '3rem' }}>{bsItems.map(renderCard)}</div>
-                            )}
-                        </>
-                    );
-                })()}
 
-                {/* Fallback for loading state */}
-                {products.length === 0 && items.length === 0 && (
-                    <div className="card">
-                        <h3>Loading Services...</h3>
-                    </div>
-                )}
-            </section>
-
-            {/* Case Studies Section */}
-            <section id="projects" className="section section--full" style={{ background: '#0a0a0a', paddingTop: '0rem' }}>
-                <h2 className="section-title">Selected Works</h2>
-                <div className="grid">
-                    {projects.length === 0 && items.length === 0 ? (
-                        <div className="card" style={{ background: 'linear-gradient(45deg, #111, #000)' }}>
-                            <div style={{ textTransform: 'uppercase', color: 'var(--accent-color)', fontSize: '0.8rem', marginBottom: '1rem' }}>Case Study</div>
-                            <h3>Amber Real Estate</h3>
-                            <p>Digital Transformation Reference. (Loading...)</p>
-                        </div>
-                    ) : projects.map(item => (
-                        <div key={item.id} className="card" style={{ background: 'linear-gradient(45deg, #111, #000)' }}>
-                            <div style={{
-                                textTransform: 'uppercase',
-                                fontSize: '0.8rem',
-                                color: 'var(--accent-color)',
-                                marginBottom: '1rem'
-                            }}>Case Study</div>
-                            <h3>{item.title}</h3>
-                            <p>{item.description}</p>
-                            <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fff', fontSize: '0.9rem', cursor: 'pointer' }}>
-                                Read Case Study &rarr;
+                        {/* Card 3: On-Time Delivery */}
+                        <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <div style={{ color: '#ffd700', marginBottom: '1.5rem' }}>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
                             </div>
+                            <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>On-Time Delivery</h3>
+                            <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                We respect deadlines. Your project will be delivered on time, every time.
+                            </p>
                         </div>
-                    ))}
-                </div>
-            </section>
 
-            {/* Why Choose Us Section */}
-            <section className="section" style={{ background: '#050505', paddingTop: '4rem', paddingBottom: '4rem' }}>
-                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                    <h2 className="section-title" style={{ marginBottom: '0.5rem' }}>Why Choose Us</h2>
-                    <p style={{ color: '#888', fontSize: '1.1rem' }}>We deliver excellence in every project we undertake</p>
-                </div>
-
-                <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-                    {/* Card 1: Lightning Fast */}
-                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <div style={{ color: '#00f2ea', marginBottom: '1.5rem' }}>
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
+                        {/* Card 4: 24/7 Support */}
+                        <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <div style={{ color: '#ff4081', marginBottom: '1.5rem' }}>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </div>
+                            <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>24/7 Support</h3>
+                            <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                Round-the-clock support to keep your website running smoothly at all times.
+                            </p>
                         </div>
-                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>Lightning Fast</h3>
-                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                            Optimized for speed with cutting-edge tech stack ensuring blazing fast load times.
-                        </p>
                     </div>
+                </section>
 
-                    {/* Card 2: Secure & Reliable */}
-                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <div style={{ color: '#00f2ea', marginBottom: '1.5rem' }}>
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>Secure & Reliable</h3>
-                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                            Enterprise-grade security with SSL, backups, and 99.9% uptime guarantee.
-                        </p>
-                    </div>
+                {/* Orb 1 — strong blue, top-left */}
+                <div style={{
+                    position: 'absolute', top: '3%', left: '-3%',
+                    width: '700px', height: '500px',
+                    background: 'radial-gradient(ellipse at center, rgba(42,182,251,0.14) 0%, transparent 65%)',
+                    filter: 'blur(30px)',
+                    animation: 'orb-float-1 12s ease-in-out infinite',
+                    zIndex: 0, pointerEvents: 'none',
+                }} />
 
-                    {/* Card 3: On-Time Delivery */}
-                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <div style={{ color: '#ffd700', marginBottom: '1.5rem' }}>
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>On-Time Delivery</h3>
-                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                            We respect deadlines. Your project will be delivered on time, every time.
-                        </p>
-                    </div>
+                {/* Orb 2 — vivid magenta, upper-right */}
+                <div style={{
+                    position: 'absolute', top: '5%', right: '-2%',
+                    width: '580px', height: '420px',
+                    background: 'radial-gradient(ellipse at center, rgba(168,85,247,0.12) 0%, transparent 65%)',
+                    filter: 'blur(28px)',
+                    animation: 'orb-float-2 14s ease-in-out infinite',
+                    zIndex: 0, pointerEvents: 'none',
+                }} />
 
-                    {/* Card 4: 24/7 Support */}
-                    <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <div style={{ color: '#ff4081', marginBottom: '1.5rem' }}>
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                        </div>
-                        <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>24/7 Support</h3>
-                        <p style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                            Round-the-clock support to keep your website running smoothly at all times.
-                        </p>
-                    </div>
-                </div>
-            </section>
+                {/* Orb 3 — gold, mid-left */}
+                <div style={{
+                    position: 'absolute', top: '38%', left: '5%',
+                    width: '480px', height: '320px',
+                    background: 'radial-gradient(ellipse at center, rgba(253,203,82,0.10) 0%, transparent 65%)',
+                    filter: 'blur(32px)',
+                    animation: 'orb-float-3 10s ease-in-out infinite',
+                    zIndex: 0, pointerEvents: 'none',
+                }} />
 
-            <Footer />
+                {/* Orb 4 — blue, mid-right */}
+                <div style={{
+                    position: 'absolute', top: '45%', right: '0%',
+                    width: '550px', height: '380px',
+                    background: 'radial-gradient(ellipse at center, rgba(42,182,251,0.12) 0%, transparent 65%)',
+                    filter: 'blur(28px)',
+                    animation: 'orb-float-1 16s ease-in-out infinite',
+                    zIndex: 0, pointerEvents: 'none',
+                }} />
+
+                {/* Orb 5 — magenta, lower-left */}
+                <div style={{
+                    position: 'absolute', bottom: '18%', left: '10%',
+                    width: '460px', height: '300px',
+                    background: 'radial-gradient(ellipse at center, rgba(168,85,247,0.11) 0%, transparent 65%)',
+                    filter: 'blur(30px)',
+                    animation: 'orb-float-2 11s ease-in-out infinite',
+                    zIndex: 0, pointerEvents: 'none',
+                }} />
+
+                {/* Orb 6 — gold accent, bottom-right */}
+                <div style={{
+                    position: 'absolute', bottom: '5%', right: '12%',
+                    width: '400px', height: '260px',
+                    background: 'radial-gradient(ellipse at center, rgba(253,203,82,0.09) 0%, transparent 65%)',
+                    filter: 'blur(26px)',
+                    animation: 'orb-float-3 13s ease-in-out infinite',
+                    zIndex: 0, pointerEvents: 'none',
+                }} />
+
+
+
+                <Footer />
+            </div>
         </div>
     );
 };
 
 export default Home;
+
