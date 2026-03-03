@@ -52,8 +52,7 @@ const Footer = () => {
                     <h4 style={{ color: '#fff', marginBottom: '1.5rem' }}>Quick Links</h4>
                     <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                         <li><Link to="/solutions" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Solutions</Link></li>
-                        <li><Link to="/products" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Products</Link></li>
-                        <li><Link to="/insights" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Insights</Link></li>
+                        <li><Link to="/portfolio" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Portfolio</Link></li>
                         <li><Link to="/company" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Company</Link></li>
                     </ul>
                 </div>
@@ -114,11 +113,6 @@ const Footer = () => {
                         {footer?.socialLinks?.twitter && (
                             <a href={footer.socialLinks.twitter} style={{ color: '#888', transition: 'all 0.3s', fontSize: '1.5rem' }} className="social-link" target="_blank" rel="noopener noreferrer">
                                 <FaTwitter />
-                            </a>
-                        )}
-                        {footer?.socialLinks?.github && (
-                            <a href={footer.socialLinks.github} style={{ color: '#888', transition: 'all 0.3s', fontSize: '1.5rem' }} className="social-link" target="_blank" rel="noopener noreferrer">
-                                <FaGithub />
                             </a>
                         )}
                     </div>

@@ -286,31 +286,57 @@ const Home = () => {
                     )}
                 </section>
 
-                {/* Case Studies Section */}
+                {/* Selected Works / Client Showcase */}
                 <section id="projects" className="section section--full" style={{ background: '#0a0a0a', paddingTop: '0rem' }}>
-                    <h2 className="section-title">Selected Works</h2>
+                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
+                        <h2 className="section-title" style={{ margin: 0 }}>Selected Works</h2>
+                        <Link to="/portfolio" style={{ fontSize: '0.85rem', color: 'var(--accent-color)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                            View All Work →
+                        </Link>
+                    </div>
+
                     <div className="grid">
-                        {projects.length === 0 && items.length === 0 ? (
-                            <div className="card" style={{ background: 'linear-gradient(45deg, #111, #000)' }}>
-                                <div style={{ textTransform: 'uppercase', color: 'var(--accent-color)', fontSize: '0.8rem', marginBottom: '1rem' }}>Case Study</div>
-                                <h3>Amber Real Estate</h3>
-                                <p>Digital Transformation Reference. (Loading...)</p>
-                            </div>
-                        ) : projects.map(item => (
-                            <div key={item.id} className="card" style={{ background: 'linear-gradient(45deg, #111, #000)' }}>
-                                <div style={{
-                                    textTransform: 'uppercase',
-                                    fontSize: '0.8rem',
-                                    color: 'var(--accent-color)',
-                                    marginBottom: '1rem'
-                                }}>Case Study</div>
-                                <h3>{item.title}</h3>
-                                <p>{item.description}</p>
-                                <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fff', fontSize: '0.9rem', cursor: 'pointer' }}>
-                                    Read Case Study &rarr;
+                        {/* ── New Nuva ── */}
+                        <div className="card" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #050505 100%)', border: '1px solid rgba(42,182,251,0.18)', padding: 0, overflow: 'hidden' }}>
+                            <div style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
+                                <img src="/portfolio_digital_marketing.png" alt="New Nuva" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 60%)' }} />
+                                <div style={{ position: 'absolute', bottom: '0.9rem', left: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2AB6FB', boxShadow: '0 0 8px #2AB6FB' }} />
+                                    <span style={{ fontWeight: '800', fontSize: '1.1rem', color: '#fff' }}>New Nuva</span>
                                 </div>
                             </div>
-                        ))}
+                            <div style={{ padding: '1.4rem' }}>
+                                <p style={{ color: '#94a3b8', fontSize: '0.875rem', lineHeight: '1.7', marginBottom: '1.1rem' }}>
+                                    Full-spectrum digital marketing across three divisions — Meta Ads, creative poster series, social media management, and on-location video production.
+                                </p>
+                                {/* Service tags */}
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.2rem' }}>
+                                    {['Digital Marketing', 'Meta Ads', 'Poster Design', 'Social Media', 'Video Production'].map(tag => (
+                                        <span key={tag} style={{ background: 'rgba(42,182,251,0.1)', border: '1px solid rgba(42,182,251,0.25)', color: '#2AB6FB', padding: '0.2rem 0.6rem', borderRadius: '6px', fontSize: '0.7rem', fontWeight: '600' }}>{tag}</span>
+                                    ))}
+                                </div>
+                                {/* Stats row */}
+                                <div style={{ display: 'flex', gap: '1.2rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.06)', marginBottom: '1.2rem' }}>
+                                    {[{ v: '15+', l: 'Creatives' }, { v: '3', l: 'Divisions' }, { v: '5', l: 'Services' }].map(s => (
+                                        <div key={s.l} style={{ textAlign: 'center', flex: 1 }}>
+                                            <div style={{ fontSize: '1.3rem', fontWeight: '800', color: '#2AB6FB', lineHeight: 1 }}>{s.v}</div>
+                                            <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '0.2rem' }}>{s.l}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                                    <a href="https://newnuva.com/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.8rem', color: '#2AB6FB', fontWeight: '600' }}>Visit newnuva.com ↗</a>
+                                    <Link to="/portfolio" style={{ fontSize: '0.8rem', color: '#888', fontWeight: '600' }}>Full Case Study →</Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ── More coming soon ── */}
+                        <div className="card" style={{ background: 'rgba(255,255,255,0.015)', border: '1px dashed rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '340px', gap: '0.75rem', color: '#3f4f60' }}>
+                            <div style={{ fontSize: '2rem' }}>+</div>
+                            <div style={{ fontSize: '0.82rem', fontWeight: '600', letterSpacing: '0.07em', textTransform: 'uppercase' }}>More Coming Soon</div>
+                        </div>
                     </div>
                 </section>
 
