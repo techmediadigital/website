@@ -72,8 +72,8 @@ const Home = () => {
                 <h1>{pageContent?.heroTitle || 'Transforming Businesses Through Digital Engineering'}</h1>
                 <p>{pageContent?.heroSubtitle || 'We build high-performance digital ecosystems for global businesses and enterprises. Secure. Scalable. Future-ready.'}</p>
                 <div style={{ display: 'flex', gap: '1rem', zIndex: 2 }}>
-                    <button className="btn">Start Project</button>
-                    <button className="btn" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>Our Expertise</button>
+                    <Link to="/contact"><button className="btn">Start Project</button></Link>
+                    <Link to="/solutions"><button className="btn" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>Our Expertise</button></Link>
                 </div>
             </header>
 
@@ -299,7 +299,7 @@ const Home = () => {
                         {/* ── New Nuva ── */}
                         <div className="card" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #050505 100%)', border: '1px solid rgba(42,182,251,0.18)', padding: 0, overflow: 'hidden' }}>
                             <div style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
-                                <img src="/portfolio_digital_marketing.png" alt="New Nuva" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                                <img src="/portfolio_digital_marketing.webp" alt="New Nuva" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 60%)' }} />
                                 <div style={{ position: 'absolute', bottom: '0.9rem', left: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2AB6FB', boxShadow: '0 0 8px #2AB6FB' }} />

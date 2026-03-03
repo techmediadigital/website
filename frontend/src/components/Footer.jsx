@@ -52,6 +52,7 @@ const Footer = () => {
                     <h4 style={{ color: '#fff', marginBottom: '1.5rem' }}>Quick Links</h4>
                     <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                         <li><Link to="/solutions" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Solutions</Link></li>
+                        <li><Link to="/products" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Products</Link></li>
                         <li><Link to="/portfolio" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Portfolio</Link></li>
                         <li><Link to="/company" style={{ color: '#888', textDecoration: 'none', transition: 'color 0.3s' }} className="footer-link">Company</Link></li>
                     </ul>
@@ -127,15 +128,11 @@ const Footer = () => {
                 color: '#444',
                 fontSize: '0.8rem',
                 display: 'flex',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
                 flexWrap: 'wrap',
                 gap: '1rem'
             }}>
                 <p>&copy; {new Date().getFullYear()} TechMediaDigital. All rights reserved.</p>
-                <div style={{ display: 'flex', gap: '2rem' }}>
-                    <a href="#" style={{ color: '#444', textDecoration: 'none' }}>Privacy Policy</a>
-                    <a href="#" style={{ color: '#444', textDecoration: 'none' }}>Terms of Service</a>
-                </div>
             </div>
         </footer>
     );

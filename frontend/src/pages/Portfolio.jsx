@@ -12,7 +12,7 @@ const clients = [
         accentColor: '#2AB6FB',
         featured: true,
         services: ['Digital Marketing', 'Meta Ads', 'Poster Design', 'Social Media Handling', 'Video Production'],
-        cover: '/portfolio_digital_marketing.png',
+        cover: '/portfolio_digital_marketing.webp',
         description:
             "Full-spectrum digital marketing for New Nuva's three divisions — from Meta ad campaigns and targeted social content to creative poster series and on- location ad video production.",
         stats: [
@@ -78,7 +78,7 @@ const ClientCard = ({ client }) => {
             {/* Cover */}
             <div style={{ position: 'relative', height: '200px', overflow: 'hidden', flexShrink: 0 }}>
                 <img
-                    src={client.cover} alt={client.name}
+                    src={client.cover} alt={client.name} loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease', transform: hovered ? 'scale(1.06)' : 'scale(1)' }}
                 />
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.3) 55%, transparent 100%)' }} />

@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Company from './pages/Company';
 import Contact from './pages/Contact';
 import Solutions from './pages/Solutions';
+import Products from './pages/Products';
 import Portfolio from './pages/Portfolio';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/company" element={<Company />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/solutions" element={<Solutions />} />
+              <Route path="/products" element={<Products />} />
               <Route path="/portfolio" element={<Portfolio />} />
             </Route>
 

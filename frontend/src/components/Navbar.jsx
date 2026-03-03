@@ -38,7 +38,7 @@ const Navbar = () => {
         <nav className="navbar" ref={navRef}>
             <div className="nav-logo">
                 <Link to="/" style={{ textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center' }}>
-                    <img src={logo} alt="Techmedia Logo" style={{ height: '60px' }} />
+                    <img src={logo} alt="Techmedia Logo" style={{ height: '50px' }} />
                     <span style={{ marginLeft: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>TechMediaDigital</span>
                 </Link>
             </div>
@@ -52,6 +52,7 @@ const Navbar = () => {
             <div className={`nav-group ${isMenuOpen ? 'active' : ''}`}>
                 <div className="nav-links">
                     <Link to="/solutions" className={isActive('/solutions')}>Solutions</Link>
+                    <Link to="/products" className={isActive('/products')}>Products</Link>
                     <Link to="/portfolio" className={isActive('/portfolio')}>Portfolio</Link>
                     <Link to="/company" className={isActive('/company')}>Company</Link>
                 </div>

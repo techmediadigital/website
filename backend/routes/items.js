@@ -9,35 +9,35 @@ let items = [
         title: 'Enterprise Solutions',
         description: 'Custom-built specialized systems, CRM integrations (VaultRE), and scalable architectures for high-growth businesses.',
         type: 'service',
-        image: '/assets/services/business-systems.png'
+        image: '/assets/services/business-systems.webp'
     },
     {
         id: 2,
         title: 'Data Intelligence',
         description: 'Advanced analytics, neural network architectures, and AI-driven insights to power decision making.',
         type: 'service',
-        image: '/assets/services/ai-data.png'
+        image: '/assets/services/ai-data.webp'
     },
     {
         id: 3,
         title: 'Intelligent Automation',
         description: 'End-to-end workflow automation, cloud infrastructure, and security-first development.',
         type: 'service',
-        image: '/assets/services/software-development.png'
+        image: '/assets/services/software-development.webp'
     },
     {
         id: 4,
         title: 'Amber Real Estate',
         description: 'Complete digital transformation for a leading real estate group. 40% increase in lead generation.',
         type: 'project',
-        image: '/assets/services/business-systems.png'
+        image: '/assets/services/business-systems.webp'
     },
     {
         id: 5,
         title: 'Global Logistics Core',
         description: 'AI-powered route optimization and fleet management dashboard.',
         type: 'project',
-        image: '/assets/services/ai-data.png'
+        image: '/assets/services/ai-data.webp'
     },
 
     // Digital Marketing Category
@@ -47,7 +47,7 @@ let items = [
         description: 'Helps your business appear at the top when people search on Google.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/seo.png'
+        image: '/assets/services/seo.webp'
     },
     {
         id: 13,
@@ -55,7 +55,7 @@ let items = [
         description: 'Engaging and advertising through platforms like Facebook and Instagram.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/smm.png'
+        image: '/assets/services/smm.webp'
     },
     {
         id: 14,
@@ -63,7 +63,7 @@ let items = [
         description: 'Paying to appear prominently in search results using platforms like Google Ads.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/ppc.png'
+        image: '/assets/services/ppc.webp'
     },
     {
         id: 15,
@@ -71,7 +71,7 @@ let items = [
         description: 'Attracting customers with high-quality blogs, videos, and graphics to drive engagement.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/content-marketing.png'
+        image: '/assets/services/content-marketing.webp'
     },
     {
         id: 16,
@@ -79,7 +79,7 @@ let items = [
         description: 'Sending special offers and updates to customers via email.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/email-marketing.png'
+        image: '/assets/services/email-marketing.webp'
     },
     {
         id: 24,
@@ -87,7 +87,7 @@ let items = [
         description: 'Marketing strategies augmented by data analytics for better targeting and ROI.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/data-marketing.png'
+        image: '/assets/services/data-marketing.webp'
     },
     {
         id: 25,
@@ -95,7 +95,7 @@ let items = [
         description: 'Long-term marketing strategies to achieve sustainable business growth.',
         type: 'product',
         category: 'Digital Marketing',
-        image: '/assets/services/strategy-marketing.png'
+        image: '/assets/services/strategy-marketing.webp'
     },
 
 
@@ -106,7 +106,7 @@ let items = [
         description: 'Bespoke software, web, and mobile app development tailored to your specific business challenges.',
         type: 'product',
         category: 'Software Development',
-        image: '/assets/services/software-custom.png'
+        image: '/assets/services/software-custom.webp'
     },
 
     {
@@ -115,7 +115,7 @@ let items = [
         description: 'Comprehensive e-commerce platforms to manage online sales and inventory.',
         type: 'product',
         category: 'Software Development',
-        image: '/assets/services/software-ecommerce.png'
+        image: '/assets/services/software-ecommerce.webp'
     },
     {
         id: 22,
@@ -123,7 +123,7 @@ let items = [
         description: 'Integrated software for managing hotels, resorts, and hospitality businesses.',
         type: 'product',
         category: 'Software Development',
-        image: '/assets/services/software-hospitality.png'
+        image: '/assets/services/software-hospitality.webp'
     },
 
     // AI & Data Solutions Category
@@ -133,7 +133,7 @@ let items = [
         description: 'Advanced AI-powered chatbots to automate customer support and engagement.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/ai-chatbot.png'
+        image: '/assets/services/ai-chatbot.webp'
     },
     {
         id: 27,
@@ -141,7 +141,7 @@ let items = [
         description: 'In-depth data analysis to uncover actionable insights and trends.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/data-analytics.png'
+        image: '/assets/services/data-analytics.webp'
     },
     {
         id: 28,
@@ -149,7 +149,7 @@ let items = [
         description: 'Artificial Intelligence solutions to automate processes and enhance decision-making.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/ai-general.png'
+        image: '/assets/services/ai-general.webp'
     },
     {
         id: 29,
@@ -157,7 +157,7 @@ let items = [
         description: 'Image and video analysis technology for automated visual inspection and recognition.',
         type: 'product',
         category: 'AI & Data Solutions',
-        image: '/assets/services/computer-vision.png'
+        image: '/assets/services/computer-vision.webp'
     },
 
     // Business Systems Category
@@ -167,7 +167,7 @@ let items = [
         description: 'Customer Relationship Management systems to manage interactions with current and potential customers.',
         type: 'product',
         category: 'Business Systems',
-        image: '/assets/services/business-systems.png'
+        image: '/assets/services/business-systems.webp'
     },
     {
         id: 19,
@@ -175,7 +175,7 @@ let items = [
         description: 'Enterprise Resource Planning software to manage day-to-day business activities.',
         type: 'product',
         category: 'Business Systems',
-        image: '/assets/services/business-systems.png'
+        image: '/assets/services/business-systems.webp'
     }
 ];
 
