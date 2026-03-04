@@ -347,7 +347,7 @@ const Home = () => {
                         <p style={{ color: '#888', fontSize: '1.1rem' }}>We deliver excellence in every project we undertake</p>
                     </div>
 
-                    <div className="grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+                    <div className="grid" style={{ gap: '2rem' }}>
                         {/* Card 1: Lightning Fast */}
                         <div className="card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
                             <div style={{ color: '#00f2ea', marginBottom: '1.5rem' }}>
